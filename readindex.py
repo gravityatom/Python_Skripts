@@ -6,34 +6,50 @@ import re
 import os.path
 
 def process_file (filename):
-    #open up file for reading
-    contents = open(filename, 'r')
-    word_count = 0
-    sentence_count = 0
+#open up file for reading
+
+    contents        = open(filename, 'r')
+
+    word_count      = 0
+
+    sentence_count  = 0
+
     character_count = 0
-    
-    #loop through contents of file
+
+#loop through contents of file
     for line in contents:
-        line = line.rstrip('\n')
+
+       line = line.rstrip('\n')
 
         print(f"LINE: {line}")
-        
-        #split line into words
+
+ #split line into words
+
         words = line.split()
 
         for word in words:
-            word_count += 1
-            word_count += 1
-            #sum of characters in each word
-            word_len = len(word)
-            #Total character count
-            character_count += word_len
-            print(f"word: {word} length: {word_len}")
 
-            if re.search(r'[\.\?\!]$', word):
-                print(f" found end of sentence")
-                sentence_count+= 1
-        print("\n")
+           word_count += 1
+
+           word_count += 1
+#sum of characters in each word
+
+           word_len = len(word)
+
+#total character count
+
+           character_count += word_len
+
+           print(f"word: {word} length: {word_len}")
+
+
+           if re.search(r'[\.\?\!]$', word):
+
+               print(f" found end of sentence")
+
+               sentence_count+= 1
+
+       print("\n")
 
     return [word_count, sentence_count, character_count]
 
