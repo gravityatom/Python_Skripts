@@ -18,9 +18,9 @@ def process_file (filename):
 
 #loop through contents of file
     for line in contents:
-
-       line = line.rstrip('\n')
-
+        
+        line = line.rstrip('\n')
+        
         print(f"LINE: {line}")
 
  #split line into words
@@ -48,31 +48,45 @@ def process_file (filename):
                print(f" found end of sentence")
 
                sentence_count+= 1
-
-       print("\n")
+           
+           print("\n")
 
     return [word_count, sentence_count, character_count]
 
 def autoread_method(stats):
+   
     word_count = stats[0]
+   
     sentence_count = stats[1]
+   
     character_count = stats[2]
+   
     readindex = 4.71 * (character_count/word_count) + 0.5 *  \
     (word_count/sentence_count) - 21.43
+   
     return readindex
 
 if __name__ == '__main__':
+   
     parser = argparse.ArgumentParser()
+   
     parser.add_argument('--file', type = str, required = True)
+   
     parser.add_argument('--index', type = str, default = "autoread")
+   
     args = parser.parse_args()
 
-    #Check if --file exists before processing it
+#check if --file exists before processing it
+    
     if (os.path.exists(args.file)) is False:
+       
         print (f"ERROR: File ({args.file}) does not exist!")
+        
         exit()
   
+    
     stats = process_file(args.file)
+    
     readindex = autoread_method(stats)
 
     print(f"read Index: {readindex}")
